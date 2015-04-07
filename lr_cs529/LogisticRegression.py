@@ -80,6 +80,14 @@ def trainfn(train, tempweights, eta, lmda):
         p[len(p)-1][i] = 1
     for i in range(len(p[0])):
         p[:, i] = p[:, i]/np.sum(p[:, i])
+
+    for i in range(len(p[0])):
+        maxv = 0
+        for j in range(len(p)):
+            if p[j][i] > maxv:
+                maxv = p[j][i]
+        for j in range(len(p)):
+            p[j][i] = p[j][i]/maxv
     np.savetxt('test.txt', p, '%f')
     exit(1)
 
