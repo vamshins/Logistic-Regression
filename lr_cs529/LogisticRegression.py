@@ -10,36 +10,40 @@ genres = {'classical': 0, 'jazz': 1, 'country': 2, 'pop': 3, 'rock': 4, 'metal':
 no_of_docs = 600
 no_of_features = 1000
 
-
 def getdata(path):
+    classesmatrix = np.zeros((no_of_docs, 1))
     fftdata = np.zeros((no_of_docs, no_of_features))
     fileindex = 0
     for subdir, dirs, files in os.walk(path):
         if os.path.basename(subdir) in genres.keys():
             for f in files:
                 if f.endswith('.wav'):
+                    print "Processing file : " + f
                     sample_rate, X = scipy.io.wavfile.read(os.path.join(subdir, f))
                     fft_features = abs(scipy.fft(X)[:1000])
                     for i in range(len(fft_features)):
                         fftdata[fileindex][i] = fft_features[i]
+                    classesmatrix[fileindex] = genres[os.path.basename(subdir)]
                     fileindex += 1
+    np.savetxt('classesmatrix.txt', classesmatrix, '%d')
     return fftdata
 
 
 # Split the fft data into train and test data. Generates 10 sets of data.
 def kfold(fftdata, numberoffolds):
     folddata = []
+    classesmatrix = np.loadtxt('classesmatrix.txt', int, '%d')
     for i in range(numberoffolds):
         train = []
         test = []
-        testlabels = []
+        testclasses = []
         for j in range(len(fftdata)):
             if (j - i) % 10 == 0:
                 test.append(fftdata[j])
-                testlabels.append(j) # append 0,10,20,...
+                testclasses.append(classesmatrix[j])  # append 0,10,20,...
             else:
                 train.append(fftdata[j])
-        folddata.append((train, test, testlabels))
+        folddata.append((train, test, testclasses))
     return folddata
 
 
@@ -81,15 +85,45 @@ def trainfn(train, tempweights, eta, lmda):
     for i in range(len(p[0])):
         p[:, i] = p[:, i]/np.sum(p[:, i])
 
+    errormatrix = (deltamatrix - p).dot(train)
+
+    intermatrix = eta * (errormatrix - lmda * tempweights)
+
+    updatedweightmatrix = np.add(tempweights, intermatrix)
+
+    return updatedweightmatrix
+
+
+def testfn(tempweights, test):
+    p = np.exp(tempweights.dot(np.transpose(test)))
+
+    for i in range(len(p[0])):
+        p[len(p)-1][i] = 1
+    for i in range(len(p[0])):
+        p[:, i] = p[:, i]/np.sum(p[:, i])
+
+    newtestclasses = np.zeros((len(test), 1))
     for i in range(len(p[0])):
         maxv = 0
         for j in range(len(p)):
             if p[j][i] > maxv:
                 maxv = p[j][i]
-        for j in range(len(p)):
-            p[j][i] = p[j][i]/maxv
-    np.savetxt('test.txt', p, '%f')
-    exit(1)
+                maxj = j
+        newtestclasses[i] = maxj
+
+    return newtestclasses
+
+
+def calc_conf_acc(testclasses, newtestclasses):
+    confusionmatrix = np.zeros((len(genres), len(genres)))
+    correct = 0
+    for i in range(len(testclasses)):
+        o = int(testclasses[i]) - 1
+        n = int(newtestclasses[i]) - 1
+        confusionmatrix[o][n] += 1
+        if testclasses[i] == newtestclasses[i]:
+            correct += 1
+    return confusionmatrix, float(correct)/len(testclasses)
 
 
 def processfftdata(fftdata):
@@ -99,14 +133,20 @@ def processfftdata(fftdata):
     lmda = 0.001
     it = 300
     for i in range(len(folddata)):
-        weights = np.zeros((len(genres), len(folddata[0][0][0]) + 1))
-        train, test, testlabels = folddata[i]
-        train = normalize(train)
-        test = normalize(test)
-        for j in range(it):
-            eta = eta_new / (1 + i / it)
+            weights = np.zeros((len(genres), no_of_features + 1))
+            train, test, testclasses = folddata[i]
+            train = normalize(train)
+            test = normalize(test)
             tempweights = weights[:]
-            tempweights = trainfn(train, tempweights, eta, lmda)
+            for j in range(it):
+                    print "Current Fold : " + str(i)
+                    print "Iteration : " + str(j)
+                    eta = eta_new / (1 + j / it)
+                    tempweights = trainfn(train, tempweights, eta, lmda)
+                    newtestclasses = testfn(tempweights, test)
+                    confmatrix, accuracy = calc_conf_acc(testclasses, newtestclasses)
+                    print "Accuracy  : " + str(accuracy)
+                    print "Confusion Matrix : \n" + str(confmatrix)
 
 
 if __name__ == '__main__':
