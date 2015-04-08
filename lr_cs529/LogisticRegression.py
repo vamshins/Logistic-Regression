@@ -6,7 +6,7 @@ import scipy.io.wavfile
 import numpy as np
 from scikits.talkbox.features import mfcc
 
-genres = {'classical': 0, 'jazz': 1, 'country': 2, 'pop': 3, 'rock': 4, 'metal': 5}
+genres = {'classical': 0, 'country': 1, 'jazz': 2, 'metal': 3, 'pop': 4, 'rock': 5}
 no_of_docs = 600
 no_of_fft_features = 1000
 no_of_mfcc_features = 13
@@ -161,7 +161,7 @@ def processdata(fftdata, no_of_features):
     eta = 0.01
     eta_new = 0.01
     lmda = 0.001
-    it = 300
+    it = 3000
     eachfoldmaxaccuracies = []
     for i in range(len(folddata)):
         # if i == 1:
@@ -222,6 +222,6 @@ if __name__ == '__main__':
                         savemfccdatatofile(getmfccdata(args[1]))
                         processdata(loadmfccdata("mfccdata.txt"), no_of_mfcc_features)
                         exit(0)
-                else:
-                    print "Incorrect arguments. Usage: -fft/mfcc <path to data>"
-                    exit(0)
+            else:
+                print "Invalid arguments. Usage: -fft/mfcc <path to data>"
+                exit(0)
