@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="28787755-a262-4614-ab3c-27f4af5d3731" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\Deliverables\README.txt" afterPath="$PROJECT_DIR$/Deliverables/README.md" />
+      <change type="MOVED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\Deliverables\README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="Logistic_Regression.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,10 +102,6 @@
               <option name="myItemId" value="Logistic_Regression" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lr_cs529" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -117,7 +113,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Deliverables" />
+              <option name="myItemId" value="lr_cs529" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -139,6 +135,11 @@
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.LogisticRegression">
     <configuration default="false" name="LogisticRegression" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -338,7 +339,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428475413827</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Renamed README.txt">
+      <created>1428476410419</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1428476410419</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -387,7 +394,8 @@
     <MESSAGE value="Implemented MFCC" />
     <MESSAGE value="Changed genre dictionary order.&#10;Increased iterations to 3000" />
     <MESSAGE value="Added README.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added README.txt" />
+    <MESSAGE value="Renamed README.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed README.txt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
