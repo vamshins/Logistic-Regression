@@ -36,10 +36,10 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 		 <path to data> - Path to the music data. Eg: <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
 
 5. Output of the Program for each fold with highest accuracy:
-	==========================================================================================
+==============================================================================================
 	For FFT:
 	Execution : python LogisticRegression.py -fft <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
-	------------------------------------------------------------------------------------------		
+----------------------------------------------------------------------------------------------		
 		Fold 0 max accuracy : 0.533333333333
 		Confusion Matrix : 
 		[[ 10.   0.   0.   0.   0.   0.]
@@ -140,10 +140,10 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 		 [ 0.  1.  1.  0.  0.  8.]]
 		Avg of all folds accuracies : 0.541666666667
 		
-	==========================================================================================
+==============================================================================================
 	For MFCC:
 	Execution : python LogisticRegression.py -mfcc <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
-	------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 	
 		Fold 0 max accuracy : 0.733333333333
 		Confusion Matrix : 
