@@ -8,11 +8,13 @@ from scikits.talkbox.features import mfcc
 
 genres = {'classical': 0, 'jazz': 1, 'country': 2, 'pop': 3, 'rock': 4, 'metal': 5}
 no_of_docs = 600
-no_of_features = 1000
+no_of_fft_features = 1000
+no_of_mfcc_features = 13
 
-def getdata(path):
+
+def getfftdata(path):
     classesmatrix = np.zeros((no_of_docs, 1))
-    fftdata = np.zeros((no_of_docs, no_of_features))
+    fftdata = np.zeros((no_of_docs, no_of_fft_features))
     fileindex = 0
     for subdir, dirs, files in os.walk(path):
         if os.path.basename(subdir) in genres.keys():
@@ -25,14 +27,35 @@ def getdata(path):
                         fftdata[fileindex][i] = fft_features[i]
                     classesmatrix[fileindex] = genres[os.path.basename(subdir)]
                     fileindex += 1
-    np.savetxt('classesmatrix.txt', classesmatrix, '%d')
+    np.savetxt('classesmatrixfft.txt', classesmatrix, '%d')
     return fftdata
+
+
+def getmfccdata(path):
+    classesmatrix = np.zeros((no_of_docs, 1))
+    mfccdata = np.zeros((no_of_docs, no_of_mfcc_features))
+    fileindex = 0
+    for subdir, dirs, files in os.walk(path):
+        if os.path.basename(subdir) in genres.keys():
+            for f in files:
+                if f.endswith('.wav'):
+                    print "Processing file : " + f
+                    sample_rate, X = scipy.io.wavfile.read(os.path.join(subdir, f))
+                    ceps, mspec, spec = mfcc(X)
+                    num_ceps = ceps.shape[0]
+                    mfcc_features = np.mean( ceps[int( num_ceps * 1 / 10 ):int( num_ceps * 9 / 10 )] , axis=0 )
+                    for i in range(len(mfcc_features)):
+                        mfccdata[fileindex][i] = mfcc_features[i]
+                    classesmatrix[fileindex] = genres[os.path.basename(subdir)]
+                    fileindex += 1
+    np.savetxt('classesmatrixmfcc.txt', classesmatrix, '%d')
+    return mfccdata
 
 
 # Split the fft data into train and test data. Generates 10 sets of data.
 def kfold(fftdata, numberoffolds):
     folddata = []
-    classesmatrix = np.loadtxt('classesmatrix.txt', int, '%d')
+    classesmatrix = np.loadtxt('classesmatrixfft.txt', int, '%d')
     for i in range(numberoffolds):
         train = []
         test = []
@@ -52,9 +75,19 @@ def savefftdatatofile(fftdata):
     np.savetxt('fftdata.txt', fftdata, '%f')
 
 
-# Load the fft data from pickled fft data file 'pickledfftdata.pkl'
-def loadfftdata(picklefile):
-    return np.loadtxt('fftdata.txt', float, '%f')
+# Load the fft data from fft data file
+def loadfftdata(file):
+    return np.loadtxt(file, float, '%f')
+
+
+# Saves the data into a txt file.
+def savemfccdatatofile(mfccdata):
+    np.savetxt('mfccdata.txt', mfccdata, '%f')
+
+
+# Load the fft data from mfcc data file
+def loadmfccdata(file):
+    return np.loadtxt(file, float, '%f')
 
 
 # Normalize the data (both train, test)
@@ -86,11 +119,8 @@ def trainfn(train, tempweights, eta, lmda):
         p[:, i] = p[:, i]/np.sum(p[:, i])
 
     errormatrix = (deltamatrix - p).dot(train)
-
     intermatrix = eta * (errormatrix - lmda * tempweights)
-
     updatedweightmatrix = np.add(tempweights, intermatrix)
-
     return updatedweightmatrix
 
 
@@ -110,7 +140,7 @@ def testfn(tempweights, test):
                 maxv = p[j][i]
                 maxj = j
         newtestclasses[i] = maxj
-
+    np.savetxt('test.txt',newtestclasses,'%d')
     return newtestclasses
 
 
@@ -126,27 +156,38 @@ def calc_conf_acc(testclasses, newtestclasses):
     return confusionmatrix, float(correct)/len(testclasses)
 
 
-def processfftdata(fftdata):
-    folddata = kfold(fftdata, 10)
+def processdata(fftdata, no_of_features):
+    folddata = kfold(fftdata, 10) # 10-fold cross validation
     eta = 0.01
     eta_new = 0.01
     lmda = 0.001
     it = 300
+    eachfoldmaxaccuracies = []
     for i in range(len(folddata)):
+        # if i == 1:
             weights = np.zeros((len(genres), no_of_features + 1))
             train, test, testclasses = folddata[i]
             train = normalize(train)
             test = normalize(test)
             tempweights = weights[:]
+            maxaccuracy = 0
             for j in range(it):
+                # if j == 0 or j == 1:
                     print "Current Fold : " + str(i)
                     print "Iteration : " + str(j)
-                    eta = eta_new / (1 + j / it)
+                    eta = eta_new / (1 + float(j) / it)
                     tempweights = trainfn(train, tempweights, eta, lmda)
+                    # np.savetxt('c:/temp/weights.txt', tempweights, '%f')
                     newtestclasses = testfn(tempweights, test)
                     confmatrix, accuracy = calc_conf_acc(testclasses, newtestclasses)
+                    if accuracy > maxaccuracy:
+                        maxaccuracy = accuracy
                     print "Accuracy  : " + str(accuracy)
                     print "Confusion Matrix : \n" + str(confmatrix)
+            eachfoldmaxaccuracies.append(maxaccuracy)
+    for i in range(len(eachfoldmaxaccuracies)):
+        print "Iteration " + str(i) + " max accuracy : " + str(eachfoldmaxaccuracies[i])
+    print "Avg of all folds accuracies : " + str(np.average(eachfoldmaxaccuracies))
 
 
 if __name__ == '__main__':
@@ -162,15 +203,25 @@ if __name__ == '__main__':
                     print "Checking if fft data file (fftdata.txt) is already present..."
                     if os.path.isfile('fftdata.txt'):
                         print "fftdata.txt is already present. Using this file."
-                        processfftdata(loadfftdata("fftdata.txt"))
+                        processdata(loadfftdata("fftdata.txt"), no_of_fft_features)
                         exit(0)
                     else:
-                        print "Pickledfftdata.pkl is not present. Creating one."
-                        savefftdatatofile(getdata(args[1]))
-                        processfftdata(loadfftdata("fftdata.txt"))
+                        print "fftdata.txt is not present. Creating one."
+                        savefftdatatofile(getfftdata(args[1]))
+                        processdata(loadfftdata("fftdata.txt"), no_of_fft_features)
                         exit(0)
                 elif args[0] == "-mfcc":
                     print "Using mfcc..."
+                    print "Checking if mfcc data file (mfccdata.txt) is already present..."
+                    if os.path.isfile('mfccdata.txt'):
+                        print "mfccdata.txt is already present. Using this file."
+                        processdata(loadmfccdata("mfccdata.txt"), no_of_mfcc_features)
+                        exit(0)
+                    else:
+                        print "mfccdata.txt is not present. Creating one."
+                        savemfccdatatofile(getmfccdata(args[1]))
+                        processdata(loadmfccdata("mfccdata.txt"), no_of_mfcc_features)
+                        exit(0)
                 else:
                     print "Incorrect arguments. Usage: -fft/mfcc <path to data>"
                     exit(0)

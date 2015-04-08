@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28787755-a262-4614-ab3c-27f4af5d3731" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lr_cs529/classesmatrix.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
       <change type="DELETED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\fftdata.txt" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\test.txt" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\classesmatrix.txt" afterPath="$PROJECT_DIR$/lr_cs529/classesmatrixfft.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" afterPath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,8 +33,8 @@
       <file leaf-file-name="LogisticRegression.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lr_cs529/LogisticRegression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6619718" vertical-offset="2123" max-vertical-offset="3077">
-              <caret line="147" column="20" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.5481728" vertical-offset="2118" max-vertical-offset="3944">
+              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
                 <element signature="e#23#33#0" expanded="true" />
               </folding>
@@ -47,6 +45,11 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Vamshi Krishna N S &lt;vamshi.krishna588@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -139,7 +142,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Logistic_Regression" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" />
-      <option name="PARAMETERS" value="-fft &quot;E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\opihi.cs.uvic.ca\sound\genres&quot;" />
+      <option name="PARAMETERS" value="-mfcc &quot;E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\opihi.cs.uvic.ca\sound\genres&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -293,7 +296,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428401038579</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Classified the test fold data. Generated the Confusion Matrix and Accuracies">
+      <created>1428444692050</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1428444692050</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -301,24 +310,24 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.50026387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29444444" sideWeight="0.49973616" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24960423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -338,7 +347,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="WXt - Last row 1s - values/sumofcols - argmax" />
-    <option name="LAST_COMMIT_MESSAGE" value="WXt - Last row 1s - values/sumofcols - argmax" />
+    <MESSAGE value="Classified the test fold data. Generated the Confusion Matrix and Accuracies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Classified the test fold data. Generated the Confusion Matrix and Accuracies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -355,7 +365,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lr_cs529/classesmatrix.txt">
+    <entry file="file://$PROJECT_DIR$/lr_cs529/classesmatrixfft.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.073685" vertical-offset="9732" max-vertical-offset="10302">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -373,8 +383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lr_cs529/LogisticRegression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6619718" vertical-offset="2123" max-vertical-offset="3077">
-          <caret line="147" column="20" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.5481728" vertical-offset="2118" max-vertical-offset="3944">
+          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
             <element signature="e#23#33#0" expanded="true" />
           </folding>
