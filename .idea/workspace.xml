@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28787755-a262-4614-ab3c-27f4af5d3731" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\fftdata.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\test.txt" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Vamshi\PycharmProjects\Logistic_Regression\lr_cs529\classesmatrix.txt" afterPath="$PROJECT_DIR$/lr_cs529/classesmatrixfft.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" afterPath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lr_cs529/classesmatrixmfcc.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lr_cs529/mfccdata.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Logistic_Regression.iws" />
@@ -302,7 +300,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428444692050</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implemented MFCC">
+      <created>1428451527827</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1428451527827</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -348,7 +352,8 @@
     </option>
     <MESSAGE value="WXt - Last row 1s - values/sumofcols - argmax" />
     <MESSAGE value="Classified the test fold data. Generated the Confusion Matrix and Accuracies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Classified the test fold data. Generated the Confusion Matrix and Accuracies" />
+    <MESSAGE value="Implemented MFCC" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented MFCC" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
