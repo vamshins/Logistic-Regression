@@ -18,12 +18,12 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 					|--> /classesmatrix.txt
 					|--> /mfccdata.txt
 					|--> /opihi.cs.uvic.ca/sound/genres/
-						   |--> /classical
-						   |--> /jazz
-						   |--> /country
-						   |--> /pop
-						   |--> /rock
-						   |--> /metal
+													   |--> /classical
+													   |--> /jazz
+													   |--> /country
+													   |--> /pop
+													   |--> /rock
+													   |--> /metal
 
 4. Execution of the Program:
 	4.1. Go to Run(Windows) or Terminal(Linux)
