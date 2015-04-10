@@ -6,10 +6,10 @@ import scipy.io.wavfile
 import numpy as np
 from scikits.talkbox.features import mfcc
 
-# genres = {'classical': 0, 'country': 1, 'jazz': 2, 'metal': 3, 'pop': 4, 'rock': 5}
 genres = {'classical': 0, 'jazz': 1, 'country': 2, 'pop': 3, 'rock': 4, 'metal': 5}
 no_of_docs = 600
 no_of_fft_features = 1000
+no_of_best_fft_features = 20
 no_of_mfcc_features = 13
 
 
@@ -32,18 +32,46 @@ def getfftdata(path):
     return fftdata
 
 
-def genbest20fftdata(fftdata):
-    classical = fftdata[0:99]
-    country = fftdata[100:199]
-    jazz = fftdata[200:299]
-    metal = fftdata[300:399]
-    pop = fftdata[400:499]
-    rock = fftdata[500:599]
-    best120fftdata = []
-    # best120fftdata += best20fftpergenre(classical)
+def genbestfftdata(fftdata, n):
+    classical = fftdata[0:100]
+    country = fftdata[100:200]
+    jazz = fftdata[200:300]
+    metal = fftdata[300:400]
+    pop = fftdata[400:500]
+    rock = fftdata[500:600]
+
+    fftstddata = np.std(fftdata, axis=0)
+
+    bestfftdata = np.empty((0, n))
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(classical, n, fftstddata)]
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(country, n, fftstddata)]
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(jazz, n, fftstddata)]
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(metal, n, fftstddata)]
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(pop, n, fftstddata)]
+    bestfftdata = np.r_[bestfftdata, genbestfftdatapergenre(rock, n, fftstddata)]
+    return bestfftdata
 
 
-# def best20fftpergenre(data):
+def genbestfftdatapergenre(genredata, n, fftstddata):
+    # Array to store Standard Deviations of all the features per genre
+    data = np.zeros((len(genredata), n))
+    bestfftfeaturesindexes = []
+    indexeddiffstd = []
+    sorteddiffstd = []
+    genrestddata = np.std(genredata, axis=0)
+    diffstd = fftstddata - genrestddata
+    for i in range(len(diffstd)):
+        indexeddiffstd.append((diffstd[i],i))
+    sorteddiffstd = sorted(indexeddiffstd, reverse=True)
+
+    for i in range(len(sorteddiffstd)):
+        bestfftfeaturesindexes.append(sorteddiffstd[i][1])
+        if i == n-1:
+            break
+    for i in range(len(bestfftfeaturesindexes)):
+        data[:, i] = genredata[:, bestfftfeaturesindexes[i]]
+    return data
+
 
 def getmfccdata(path):
     classesmatrix = np.zeros((no_of_docs, 1))
@@ -174,7 +202,7 @@ def processdata(fftdata, no_of_features):
     eta = 0.01
     eta_new = 0.01
     lmda = 0.001
-    it = 2000
+    it = 300
     eachfoldmaxaccuracies = []
     eachfoldmaxconfmatrices = []
     for i in range(len(folddata)):
@@ -237,12 +265,12 @@ if __name__ == '__main__':
                     print "Checking if fft data file (fftdata.txt) is already present..."
                     if os.path.isfile('fftdata.txt'):
                         print "fftdata.txt is already present. Using this file."
-                        processdata(genbest20fftdata(loadfftdata("fftdata.txt")), no_of_fft_features)
+                        processdata(genbestfftdata(loadfftdata("fftdata.txt"), no_of_best_fft_features), no_of_best_fft_features)
                         exit(0)
                     else:
                         print "fftdata.txt is not present. Creating one."
                         savefftdatatofile(getfftdata(args[1]))
-                        processdata(genbest20fftdata(loadfftdata("fftdata.txt")), no_of_fft_features)
+                        processdata(genbestfftdata(loadfftdata("fftdata.txt"), no_of_best_fft_features), no_of_best_fft_features)
                         exit(0)
                 elif args[0] == "-mfcc":
                     print "Using mfcc..."
