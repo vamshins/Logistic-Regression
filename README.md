@@ -8,15 +8,15 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 2. The executable "LogisticRegression.py" is provided in the assignment submission in UNM Learn.
 
 3. I have programmed in "Python 2.7.9 |Anaconda 2.2.0 (64-bit)|" installed in Windows 8.1.
+   I installed numpy, scikit_learn, scipy, scikits_talkbox.
    Download all the files attached in UNM Learn submission and store them in "<HOME_DIR>" (This may be any folder on your OS)
    Copy the data into the "<HOME_DIR>/opihi.cs.uvic.ca" folder.
    The folder structure looks like -
 			- <HOME_DIR>
 					|--> /LogisticRegression.py
 					|--> /fftdata.txt
-					|--> /classesmatrixfft.txt
+					|--> /classesmatrix.txt
 					|--> /mfccdata.txt
-					|--> /classesmatrixmfcc.txt
 					|--> /opihi.cs.uvic.ca/sound/genres/
 						   |--> /classical
 						   |--> /jazz
@@ -30,9 +30,15 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 	4.2. Navigate to <HOME_DIR>
 	4.3. Run the command -> python LogisticRegression.py <option> <path to data>
 			 <option> 	- Give -fft or -fft20 or -mfcc
-							-fft	-> Generates fft for the data and performs the Logistic Regression with Gradient Ascent
+							-fft	-> Generates fft for the data and performs the Logistic Regression with Gradient Ascent and stores the data in fftdata.txt file.
+									   If there is no fftdata.txt, the program will generate it.
+									   If it is already present, then program will continue with processing the data from text file.
 							-fft20	-> Generates 20 best features per genre for the fft data and performs the Logistic Regression with Gradient Ascent
+									   If there is no fftdata.txt, the program will generate it.
+									   If it is already present, then program will continue with processing the data from text file.
 							-mfcc	-> Generates mfcc for the data and performs the Logistic Regression with Gradient Ascent
+									   If there is no mfccdata.txt, the program will generate it.
+									   If it is already present, then program will continue with processing the data from text file.
 		 <path to data> - Path to the music data. Eg: <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
 
 5. Output of the Program for each fold with highest accuracy:
@@ -40,105 +46,210 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 	For FFT:
 	Execution : python LogisticRegression.py -fft <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
 ----------------------------------------------------------------------------------------------		
-		Fold 0 max accuracy : 0.533333333333
+		Fold 0 max accuracy : 0.483333333333
 		Confusion Matrix : 
 		[[ 10.   0.   0.   0.   0.   0.]
-		 [  1.   3.   1.   0.   3.   2.]
-		 [  3.   0.   7.   0.   0.   0.]
+		 [  1.   1.   3.   0.   4.   1.]
+		 [  2.   0.   7.   0.   1.   0.]
 		 [  4.   0.   0.   0.   5.   1.]
-		 [  2.   0.   0.   0.   7.   1.]
-		 [  1.   1.   0.   0.   3.   5.]]
+		 [  1.   0.   0.   0.   9.   0.]
+		 [  1.   3.   0.   0.   4.   2.]]
 
 
-		Fold 1 max accuracy : 0.583333333333
+		Fold 1 max accuracy : 0.566666666667
 		Confusion Matrix : 
-		[[ 7.  0.  1.  1.  0.  1.]
-		 [ 0.  2.  2.  3.  0.  3.]
-		 [ 1.  1.  6.  1.  0.  1.]
+		[[ 7.  0.  1.  0.  1.  1.]
+		 [ 0.  2.  2.  3.  1.  2.]
+		 [ 1.  1.  5.  1.  1.  1.]
 		 [ 0.  0.  0.  9.  1.  0.]
-		 [ 0.  1.  0.  1.  6.  2.]
-		 [ 0.  3.  1.  1.  0.  5.]]
+		 [ 0.  1.  0.  0.  7.  2.]
+		 [ 0.  3.  1.  1.  1.  4.]]
 
 
-		Fold 2 max accuracy : 0.5
+		Fold 2 max accuracy : 0.466666666667
 		Confusion Matrix : 
-		[[ 7.  0.  2.  1.  0.  0.]
-		 [ 0.  2.  2.  2.  1.  3.]
-		 [ 2.  0.  6.  0.  0.  2.]
-		 [ 1.  0.  0.  4.  0.  5.]
-		 [ 0.  0.  1.  1.  4.  4.]
-		 [ 1.  0.  0.  1.  1.  7.]]
-
-
-		Fold 3 max accuracy : 0.55
-		Confusion Matrix : 
-		[[ 9.  0.  0.  0.  1.  0.]
-		 [ 2.  3.  0.  1.  3.  1.]
-		 [ 1.  1.  4.  1.  2.  1.]
-		 [ 0.  0.  0.  4.  5.  1.]
-		 [ 1.  0.  0.  0.  8.  1.]
-		 [ 0.  0.  0.  1.  4.  5.]]
-
-
-		Fold 4 max accuracy : 0.483333333333
-		Confusion Matrix : 
-		[[ 8.  0.  0.  0.  2.  0.]
-		 [ 0.  1.  0.  0.  5.  4.]
-		 [ 2.  0.  4.  0.  2.  2.]
-		 [ 0.  0.  0.  1.  3.  6.]
-		 [ 0.  0.  0.  2.  7.  1.]
-		 [ 1.  0.  0.  0.  1.  8.]]
-
-
-		Fold 5 max accuracy : 0.566666666667
-		Confusion Matrix : 
-		[[  7.   0.   1.   0.   2.   0.]
-		 [  0.   2.   1.   0.   5.   2.]
-		 [  0.   0.   7.   0.   3.   0.]
-		 [  0.   0.   1.   4.   5.   0.]
+		[[  5.   1.   1.   0.   2.   1.]
+		 [  0.   2.   1.   0.   6.   1.]
+		 [  0.   0.   6.   0.   3.   1.]
+		 [  0.   0.   0.   3.   6.   1.]
 		 [  0.   0.   0.   0.  10.   0.]
-		 [  0.   1.   0.   2.   3.   4.]]
+		 [  0.   1.   0.   1.   6.   2.]]
 
 
-		Fold 6 max accuracy : 0.55
+		Fold 3 max accuracy : 0.5
 		Confusion Matrix : 
-		[[  9.   0.   0.   1.   0.   0.]
-		 [  1.   3.   0.   1.   3.   2.]
-		 [  1.   3.   4.   0.   2.   0.]
-		 [  0.   1.   1.   2.   5.   1.]
-		 [  0.   0.   0.   0.  10.   0.]
-		 [  0.   1.   1.   0.   3.   5.]]
+		[[ 9.  0.  0.  0.  0.  1.]
+		 [ 4.  2.  0.  2.  2.  0.]
+		 [ 1.  0.  4.  3.  1.  1.]
+		 [ 0.  0.  0.  6.  3.  1.]
+		 [ 1.  0.  0.  2.  6.  1.]
+		 [ 1.  0.  0.  3.  3.  3.]]
 
 
-		Fold 7 max accuracy : 0.533333333333
+		Fold 4 max accuracy : 0.466666666667
 		Confusion Matrix : 
-		[[ 7.  0.  1.  0.  2.  0.]
-		 [ 0.  5.  0.  0.  4.  1.]
-		 [ 1.  0.  5.  1.  2.  1.]
-		 [ 0.  0.  0.  4.  5.  1.]
+		[[ 7.  0.  1.  0.  1.  1.]
+		 [ 0.  4.  1.  0.  4.  1.]
+		 [ 2.  0.  4.  0.  1.  3.]
+		 [ 1.  1.  0.  1.  2.  5.]
+		 [ 0.  0.  0.  1.  6.  3.]
+		 [ 0.  3.  0.  0.  1.  6.]]
+
+
+		Fold 5 max accuracy : 0.5
+		Confusion Matrix : 
+		[[ 8.  0.  1.  0.  1.  0.]
+		 [ 1.  1.  0.  6.  1.  1.]
+		 [ 1.  0.  4.  3.  1.  1.]
+		 [ 0.  0.  0.  7.  2.  1.]
+		 [ 0.  1.  0.  2.  7.  0.]
+		 [ 1.  1.  0.  4.  1.  3.]]
+
+
+		Fold 6 max accuracy : 0.583333333333
+		Confusion Matrix : 
+		[[ 7.  0.  0.  2.  1.  0.]
+		 [ 0.  3.  0.  2.  3.  2.]
+		 [ 0.  1.  3.  2.  0.  4.]
+		 [ 0.  0.  0.  8.  2.  0.]
+		 [ 0.  0.  0.  2.  8.  0.]
+		 [ 0.  0.  1.  2.  1.  6.]]
+
+
+		Fold 7 max accuracy : 0.55
+		Confusion Matrix : 
+		[[ 8.  0.  2.  0.  0.  0.]
+		 [ 0.  5.  0.  0.  3.  2.]
+		 [ 1.  0.  5.  1.  1.  2.]
+		 [ 0.  0.  1.  4.  4.  1.]
 		 [ 0.  1.  0.  0.  8.  1.]
 		 [ 0.  0.  1.  2.  4.  3.]]
 
 
-		Fold 8 max accuracy : 0.55
+		Fold 8 max accuracy : 0.566666666667
 		Confusion Matrix : 
-		[[ 4.  1.  0.  0.  3.  2.]
-		 [ 0.  8.  0.  0.  1.  1.]
-		 [ 0.  1.  5.  0.  0.  4.]
-		 [ 0.  0.  0.  3.  5.  2.]
-		 [ 0.  1.  0.  0.  9.  0.]
-		 [ 0.  1.  0.  2.  3.  4.]]
+		[[  8.   0.   0.   0.   1.   1.]
+		 [  0.   6.   1.   0.   2.   1.]
+		 [  0.   2.   4.   0.   0.   4.]
+		 [  0.   1.   0.   1.   6.   2.]
+		 [  0.   0.   0.   0.  10.   0.]
+		 [  0.   2.   0.   0.   3.   5.]]
 
 
-		Fold 9 max accuracy : 0.566666666667
+		Fold 9 max accuracy : 0.516666666667
 		Confusion Matrix : 
-		[[ 9.  0.  0.  1.  0.  0.]
-		 [ 0.  2.  1.  0.  1.  6.]
-		 [ 3.  1.  5.  0.  0.  1.]
-		 [ 0.  0.  2.  4.  2.  2.]
-		 [ 0.  1.  1.  2.  6.  0.]
-		 [ 0.  1.  1.  0.  0.  8.]]
-		Avg of all folds accuracies : 0.541666666667
+		[[ 9.  0.  1.  0.  0.  0.]
+		 [ 0.  5.  1.  0.  0.  4.]
+		 [ 2.  0.  5.  0.  0.  3.]
+		 [ 0.  1.  0.  3.  2.  4.]
+		 [ 0.  1.  1.  2.  5.  1.]
+		 [ 0.  4.  1.  1.  0.  4.]]
+		Avg of all folds accuracies : 0.52
+		
+==============================================================================================
+	For FFT20:
+	Execution : python LogisticRegression.py -fft20 <HOME_DIR>\opihi.cs.uvic.ca\sound\genres
+----------------------------------------------------------------------------------------------
+
+		Fold 0 max accuracy : 0.633333333333
+		Confusion Matrix : 
+		[[ 9.  0.  0.  0.  1.  0.]
+		 [ 2.  5.  2.  1.  0.  0.]
+		 [ 2.  2.  5.  0.  1.  0.]
+		 [ 1.  0.  0.  9.  0.  0.]
+		 [ 0.  1.  2.  2.  5.  0.]
+		 [ 2.  1.  0.  1.  1.  5.]]
+
+
+		Fold 1 max accuracy : 0.616666666667
+		Confusion Matrix : 
+		[[ 7.  1.  2.  0.  0.  0.]
+		 [ 3.  5.  2.  0.  0.  0.]
+		 [ 0.  4.  6.  0.  0.  0.]
+		 [ 0.  0.  1.  9.  0.  0.]
+		 [ 1.  2.  2.  0.  5.  0.]
+		 [ 0.  3.  1.  1.  0.  5.]]
+
+
+		Fold 2 max accuracy : 0.6
+		Confusion Matrix : 
+		[[ 7.  2.  0.  0.  0.  1.]
+		 [ 0.  6.  1.  0.  3.  0.]
+		 [ 1.  1.  7.  0.  1.  0.]
+		 [ 1.  0.  2.  5.  2.  0.]
+		 [ 0.  2.  1.  0.  5.  2.]
+		 [ 1.  1.  0.  2.  0.  6.]]
+
+
+		Fold 3 max accuracy : 0.6
+		Confusion Matrix : 
+		[[ 8.  0.  1.  0.  1.  0.]
+		 [ 4.  4.  1.  0.  1.  0.]
+		 [ 1.  3.  4.  0.  2.  0.]
+		 [ 1.  1.  3.  5.  0.  0.]
+		 [ 0.  0.  1.  0.  9.  0.]
+		 [ 1.  1.  1.  0.  1.  6.]]
+
+
+		Fold 4 max accuracy : 0.583333333333
+		Confusion Matrix : 
+		[[ 9.  0.  1.  0.  0.  0.]
+		 [ 0.  6.  3.  0.  1.  0.]
+		 [ 3.  2.  4.  0.  0.  1.]
+		 [ 2.  0.  3.  5.  0.  0.]
+		 [ 1.  0.  5.  0.  3.  1.]
+		 [ 1.  0.  1.  0.  0.  8.]]
+
+
+		Fold 5 max accuracy : 0.616666666667
+		Confusion Matrix : 
+		[[ 8.  0.  2.  0.  0.  0.]
+		 [ 1.  4.  2.  2.  1.  0.]
+		 [ 1.  1.  7.  1.  0.  0.]
+		 [ 2.  0.  1.  7.  0.  0.]
+		 [ 1.  1.  3.  0.  4.  1.]
+		 [ 3.  0.  0.  0.  0.  7.]]
+
+
+		Fold 6 max accuracy : 0.616666666667
+		Confusion Matrix : 
+		[[ 6.  0.  4.  0.  0.  0.]
+		 [ 3.  6.  1.  0.  0.  0.]
+		 [ 2.  2.  5.  1.  0.  0.]
+		 [ 1.  0.  4.  5.  0.  0.]
+		 [ 0.  1.  2.  0.  7.  0.]
+		 [ 0.  0.  2.  0.  0.  8.]]
+
+
+		Fold 7 max accuracy : 0.633333333333
+		Confusion Matrix : 
+		[[ 8.  0.  1.  0.  1.  0.]
+		 [ 0.  6.  2.  0.  2.  0.]
+		 [ 3.  0.  6.  0.  1.  0.]
+		 [ 0.  2.  2.  6.  0.  0.]
+		 [ 1.  1.  3.  0.  5.  0.]
+		 [ 1.  0.  0.  0.  2.  7.]]
+
+
+		Fold 8 max accuracy : 0.666666666667
+		Confusion Matrix : 
+		[[ 8.  0.  2.  0.  0.  0.]
+		 [ 2.  5.  3.  0.  0.  0.]
+		 [ 1.  0.  8.  0.  1.  0.]
+		 [ 1.  0.  2.  7.  0.  0.]
+		 [ 0.  0.  4.  0.  6.  0.]
+		 [ 1.  1.  2.  0.  0.  6.]]
+
+
+		Fold 9 max accuracy : 0.666666666667
+		Confusion Matrix : 
+		[[ 8.  0.  1.  0.  0.  1.]
+		 [ 0.  5.  5.  0.  0.  0.]
+		 [ 0.  1.  8.  0.  1.  0.]
+		 [ 0.  1.  0.  8.  1.  0.]
+		 [ 0.  2.  2.  0.  5.  1.]
+		 [ 0.  2.  2.  0.  0.  6.]]
+		Avg of all folds accuracies : 0.623333333333
 		
 ==============================================================================================
 	For MFCC:
@@ -155,54 +266,54 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 		 [  0.   0.   1.   4.   0.   5.]]
 
 
-		Fold 1 max accuracy : 0.65
+		Fold 1 max accuracy : 0.633333333333
 		Confusion Matrix : 
-		[[ 8.  0.  0.  1.  0.  1.]
-		 [ 0.  6.  2.  0.  2.  0.]
+		[[ 8.  1.  0.  1.  0.  0.]
+		 [ 0.  5.  3.  0.  2.  0.]
 		 [ 2.  3.  2.  2.  1.  0.]
 		 [ 0.  0.  0.  9.  0.  1.]
 		 [ 1.  1.  0.  0.  8.  0.]
 		 [ 0.  4.  0.  0.  0.  6.]]
 
 
-		Fold 2 max accuracy : 0.683333333333
+		Fold 2 max accuracy : 0.666666666667
 		Confusion Matrix : 
 		[[ 8.  0.  0.  0.  0.  2.]
 		 [ 0.  4.  3.  1.  1.  1.]
-		 [ 2.  0.  6.  0.  1.  1.]
-		 [ 0.  0.  0.  9.  0.  1.]
-		 [ 0.  1.  0.  0.  9.  0.]
-		 [ 0.  1.  0.  3.  1.  5.]]
+		 [ 2.  0.  7.  0.  1.  0.]
+		 [ 0.  0.  1.  9.  0.  0.]
+		 [ 0.  1.  0.  0.  8.  1.]
+		 [ 0.  1.  0.  4.  1.  4.]]
 
 
 		Fold 3 max accuracy : 0.683333333333
 		Confusion Matrix : 
 		[[  8.   1.   1.   0.   0.   0.]
 		 [  0.   6.   0.   0.   1.   3.]
-		 [  1.   3.   4.   0.   0.   2.]
-		 [  0.   0.   0.  10.   0.   0.]
-		 [  0.   2.   0.   0.   7.   1.]
-		 [  0.   2.   0.   0.   2.   6.]]
-
-
-		Fold 4 max accuracy : 0.7
-		Confusion Matrix : 
-		[[  8.   1.   1.   0.   0.   0.]
-		 [  2.   4.   1.   0.   2.   1.]
 		 [  1.   3.   5.   0.   0.   1.]
 		 [  0.   0.   0.  10.   0.   0.]
-		 [  0.   0.   0.   0.  10.   0.]
-		 [  0.   0.   0.   4.   1.   5.]]
+		 [  0.   2.   0.   0.   7.   1.]
+		 [  0.   2.   0.   1.   2.   5.]]
 
 
-		Fold 5 max accuracy : 0.7
+		Fold 4 max accuracy : 0.666666666667
 		Confusion Matrix : 
-		[[  9.   0.   1.   0.   0.   0.]
-		 [  0.   6.   2.   0.   1.   1.]
-		 [  3.   1.   5.   0.   0.   1.]
-		 [  0.   0.   0.   9.   0.   1.]
-		 [  0.   0.   0.   0.  10.   0.]
-		 [  1.   1.   3.   2.   0.   3.]]
+		[[  7.   1.   2.   0.   0.   0.]
+		 [  1.   4.   2.   0.   2.   1.]
+		 [  2.   2.   5.   0.   0.   1.]
+		 [  0.   0.   0.  10.   0.   0.]
+		 [  0.   0.   0.   0.   9.   1.]
+		 [  1.   0.   0.   4.   0.   5.]]
+
+
+		Fold 5 max accuracy : 0.683333333333
+		Confusion Matrix : 
+		[[ 9.  0.  1.  0.  0.  0.]
+		 [ 0.  6.  2.  0.  1.  1.]
+		 [ 2.  2.  5.  0.  0.  1.]
+		 [ 0.  1.  0.  9.  0.  0.]
+		 [ 0.  0.  0.  0.  9.  1.]
+		 [ 1.  1.  3.  2.  0.  3.]]
 
 
 		Fold 6 max accuracy : 0.716666666667
@@ -222,26 +333,25 @@ CS 529 - Intro to Machine Learning - Assignment 3 - Logistic Regression
 		 [  0.   1.   8.   0.   1.   0.]
 		 [  0.   0.   1.   9.   0.   0.]
 		 [  0.   0.   0.   0.  10.   0.]
-		 [  0.   1.   0.   4.   0.   5.]]
+		 [  0.   2.   0.   3.   0.   5.]]
 
 
-		Fold 8 max accuracy : 0.766666666667
+		Fold 8 max accuracy : 0.7
 		Confusion Matrix : 
-		[[ 10.   0.   0.   0.   0.   0.]
-		 [  2.   6.   1.   0.   0.   1.]
-		 [  2.   1.   6.   0.   1.   0.]
+		[[  9.   0.   0.   1.   0.   0.]
+		 [  2.   6.   0.   1.   0.   1.]
+		 [  3.   1.   5.   0.   1.   0.]
 		 [  0.   0.   0.  10.   0.   0.]
-		 [  0.   1.   0.   0.   9.   0.]
-		 [  0.   1.   0.   3.   1.   5.]]
+		 [  0.   0.   0.   0.  10.   0.]
+		 [  1.   1.   0.   5.   1.   2.]]
 
 
-		Fold 9 max accuracy : 0.75
+		Fold 9 max accuracy : 0.733333333333
 		Confusion Matrix : 
 		[[  8.   0.   1.   0.   0.   1.]
 		 [  1.   7.   0.   1.   1.   0.]
-		 [  2.   1.   6.   0.   1.   0.]
+		 [  2.   3.   5.   0.   0.   0.]
 		 [  0.   0.   0.  10.   0.   0.]
 		 [  0.   1.   0.   0.   8.   1.]
 		 [  0.   0.   2.   0.   2.   6.]]
-		 
-		Avg of all folds accuracies : 0.716666666667
+		Avg of all folds accuracies : 0.7

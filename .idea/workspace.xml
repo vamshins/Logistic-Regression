@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28787755-a262-4614-ab3c-27f4af5d3731" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\lr_cs529\classesmatrixfft.txt" afterPath="" />
-      <change type="DELETED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\lr_cs529\classesmatrixmfcc.txt" afterPath="" />
-      <change type="DELETED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\lr_cs529\fftdata.txt" afterPath="" />
-      <change type="DELETED" beforePath="E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\git\Logistic_Regression\lr_cs529\mfccdata.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" afterPath="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Logistic Regression - Report.docx" afterPath="$PROJECT_DIR$/Logistic Regression - Report.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Logistic_Regression.iws" />
@@ -34,11 +31,9 @@
       <file leaf-file-name="LogisticRegression.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lr_cs529/LogisticRegression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="11.082102" vertical-offset="0" max-vertical-offset="7633">
-              <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
-              <folding>
-                <element signature="e#23#33#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.17435898" vertical-offset="0" max-vertical-offset="7633">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +154,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Logistic_Regression" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lr_cs529/LogisticRegression.py" />
-      <option name="PARAMETERS" value="-mfcc &quot;E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\opihi.cs.uvic.ca\sound\genres&quot;" />
+      <option name="PARAMETERS" value="-fft20 &quot;E:\UNM\CS 529 - Intro to Machine Learning\Assignment 3\opihi.cs.uvic.ca\sound\genres&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -379,7 +374,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428634749273</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Updated the comments and genres dict">
+      <created>1428646579466</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1428646579466</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -393,7 +394,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27222222" sideWeight="0.49973616" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2988889" sideWeight="0.49973616" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.120316625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -434,7 +435,8 @@
     <MESSAGE value="FFT data" />
     <MESSAGE value="Updated README" />
     <MESSAGE value="Implemented best fft 20 features functionality using Standard Deviation of the features per genre." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented best fft 20 features functionality using Standard Deviation of the features per genre." />
+    <MESSAGE value="Updated the comments and genres dict" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the comments and genres dict" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -445,9 +447,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4522">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -455,9 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4522">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -465,9 +463,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4522">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -475,9 +471,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2397">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -523,11 +517,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lr_cs529/LogisticRegression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.082102" vertical-offset="0" max-vertical-offset="7633">
-          <caret line="397" column="26" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.17435898" vertical-offset="0" max-vertical-offset="7633">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
